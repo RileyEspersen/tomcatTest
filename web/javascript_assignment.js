@@ -51,10 +51,10 @@ formButton3.on("click", hideFunction);
 // Function to validate
 function validateFunction(event) {
     // Get the field
-    var v1 = $('#validateMe').val();
+    var v1 = $('#phoneField').val();
 
     // Create the regular expression
-    var reg = /^[0-9]{3}[-]?[0-9]{3}[-]?[0-9]{4}$/;
+    var reg = /^([0-9]{3})[-]([0-9]{3})[-]([0-9]{4})$/;
 
     // Test the regular expression to see if there is a match
     if (reg.test(v1)) {
