@@ -16,7 +16,7 @@ public class Person {
     public void setFirst(String first) {this.first = first; }
 
     public String getLast() {return last; }
-    public void setlast(String last) {this.last = last; }
+    public void setLast(String last) {this.last = last; }
 
     public String getPhone() {return phone; }
     public void setPhone(String phone) {this.phone = phone; }
