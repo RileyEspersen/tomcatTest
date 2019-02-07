@@ -6,11 +6,7 @@
 
     <servlet>
         <servlet-name>NameListGet</servlet-name>
-        <servlet-class>edu.simpson.webdevelopment.NameListGet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>helloWorldServlet</servlet-name>
-        <servlet-class>edu.simpson.espersen.helloWorldServlet</servlet-class>
+        <servlet-class>edu.simpson.espersen.NameListGet</servlet-class>
     </servlet>
 
     <servlet-mapping>

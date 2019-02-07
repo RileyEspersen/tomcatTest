@@ -45,7 +45,7 @@ public class PersonDAO {
             // Create an object with all the info about our SQL statement to run.
             stmt = conn.prepareStatement(sql);
 
-            // If you had parameters, they would be set wit something like:
+            // If you had parameters, they would be set with something like:
             // stmt.setString(1, "1");
 
             // Execute the SQL and get the results
