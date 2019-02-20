@@ -65,10 +65,31 @@
             <div class="modal-body">
                 <form id="my-form" name="my-form">
                     <div class="form-group">
-                        <label for="firstName">First Name:</label> <input type="hidden" id="id" name="id" class="form-control"><br>
-                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name"><br>
-                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name"><br>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address"><br>
+                        <!--first name-->
+                        <label class="control-label" for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" aria-describedby="firstNameStatus"/>
+                        <span id="firstNameGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="firstNameStatus" class="sr-only"></span>
+                        <!--last name-->
+                        <label class="control-label" for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" aria-describedby="lastNameStatus"/>
+                        <span id="lastNameGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="lastNameStatus" class="sr-only"></span>
+                        <!--email-->
+                        <label class="control-label" for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" aria-describedby="emailStatus"/>
+                        <span id="emailGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="emailStatus" class="sr-only"></span>
+                        <!--phone-->
+                        <label class="control-label" for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" aria-describedby="phoneStatus"/>
+                        <span id="phoneGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="phoneStatus" class="sr-only"></span>
+                        <!--birthday-->
+                        <label class="control-label" for="birthday">Birthday:</label>
+                        <input type="text" id="birthday" name="birthday" class="form-control" placeholder="Birthday" aria-describedby="birthdayStatus"/>
+                        <span id="birthdayGlyph" class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        <span id="birthdayStatus" class="sr-only"></span>
                     </div>
                 </form>
             </div>
