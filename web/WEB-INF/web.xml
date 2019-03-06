@@ -5,6 +5,16 @@
          version="3.1">
 
     <servlet>
+        <servlet-name>NameListEdit</servlet-name>
+        <servlet-class>edu.simpson.espersen.NameListEdit</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NameListEdit</servlet-name>
+        <url-pattern>/api/name_list_edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>NameListGet</servlet-name>
         <servlet-class>edu.simpson.espersen.NameListGet</servlet-class>
     </servlet>

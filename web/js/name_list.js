@@ -20,16 +20,19 @@ function validateFunction(event) {
     var firstTest = /^[a-zA-Z '-]+$/;
     var lastTest = /^[a-zA-Z '-]+$/;
     var phoneTest = /^([0-9]{3})([0-9]{3})([0-9]{4})$/;
-    var emailTest = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    var birthdayTest = /^(([0-1])([0-9]))[-]([0-3])([0-9])[-]([0-9]{4})$/;
+    var emailTest = /^.{1,50}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    var birthdayTest = /^([0-9]{4})[-]([0-1])([0-9])[-]([0-3])([0-9])$/;
     //I was not sure how to get the year correct... So I guess for now you can be born in any year
     //with a four digit number eg. 9999/0000
+
+    var isValid = true;
 
     // Test the regular expression to see if there is a match
     if (firstTest.test(firstNameField)) {
         $('#firstName').removeClass("is-invalid");
         $('#firstName').addClass("is-valid");
     } else {
+        isValid = false;
         $('#firstName').addClass("is-invalid");
         $('#firstName').removeClass("is-valid");
     }
@@ -38,6 +41,7 @@ function validateFunction(event) {
         $('#lastName').removeClass("is-invalid");
         $('#lastName').addClass("is-valid");
     } else {
+        isValid = false;
         $('#lastName').addClass("is-invalid");
         $('#lastName').removeClass("is-valid");
     }
@@ -46,6 +50,7 @@ function validateFunction(event) {
         $('#phone').removeClass("is-invalid");
         $('#phone').addClass("is-valid");
     } else {
+        isValid = false;
         $('#phone').addClass("is-invalid");
         $('#phone').removeClass("is-valid");
     }
@@ -54,6 +59,7 @@ function validateFunction(event) {
         $('#email').removeClass("is-invalid");
         $('#email').addClass("is-valid");
     } else {
+        isValid = false;
         $('#email').addClass("is-invalid");
         $('#email').removeClass("is-valid");
     }
@@ -62,8 +68,26 @@ function validateFunction(event) {
         $('#birthday').removeClass("is-invalid");
         $('#birthday').addClass("is-valid");
     } else {
+        isValid = false;
         $('#birthday').addClass("is-invalid");
         $('#birthday').removeClass("is-valid");
+    }
+
+    if(isValid === true){
+        newPerson = {"first" : firstNameField, "last" : lastNameField, "email" : emailField, "phone" : phoneNumField, "birthday" : birthdayField}
+        console.log(newPerson);
+
+        var url = "api/name_list_edit";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(newPerson),
+            success: function (dataFromServer) {
+                console.log(dataFromServer);
+            },
+            contentType: "application/json",
+            dataType: 'text' // Could be JSON or whatever too
+        });
     }
 }
 
