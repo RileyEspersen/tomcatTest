@@ -35,9 +35,14 @@ public class NameListEdit extends HttpServlet {
         // names have to match. That's the magic.
         Gson gson = new Gson();
 
+
+
         System.out.println(requestString);
 
         Person fromJson = gson.fromJson(requestString, Person.class);
+
+
+        PersonDAO.addPerson(fromJson);
 
 
         // Make sure our field was set.

@@ -74,6 +74,9 @@ function validateFunction(event) {
     }
 
     if(isValid === true){
+
+        var r = $("#datatable tr");
+
         newPerson = {"first" : firstNameField, "last" : lastNameField, "email" : emailField, "phone" : phoneNumField, "birthday" : birthdayField}
         console.log(newPerson);
 
@@ -83,6 +86,13 @@ function validateFunction(event) {
             url: url,
             data: JSON.stringify(newPerson),
             success: function (dataFromServer) {
+
+                for(var i = 1; i < r.length; i++){
+                    r[i].remove();
+                }
+
+                updateTable();
+
                 console.log(dataFromServer);
             },
             contentType: "application/json",

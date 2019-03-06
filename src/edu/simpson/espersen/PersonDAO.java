@@ -96,19 +96,19 @@ public class PersonDAO {
             conn = DBHelper.getConnection();
 
             // This is a string that is our SQL query.
-            String sql = "INSERT INTO datatable (first, last, email, phoneNum, birthday) VALUES (?, ?, ?, ?, ?)";
-
+            String sql = "INSERT INTO person (first, last, email, phone, birthday) VALUES (?, ?, ?, ?, ?)";
 
             // If you had parameters, it would look something like
             // String sql = "select id, first, last, phone from person where id = ?";
 
             // Create an object with all the info about our SQL statement to run.
             stmt = conn.prepareStatement(sql);
+
             stmt.setString(1, person.getFirst());
-            stmt.setString(1, person.getLast());
-            stmt.setString(1, person.getEmail());
-            stmt.setString(1, person.getPhone());
-            stmt.setString(1, person.getBirthday());
+            stmt.setString(2, person.getLast());
+            stmt.setString(3, person.getEmail());
+            stmt.setString(4, person.getPhone());
+            stmt.setString(5, person.getBirthday());
 
 
             // Execute the SQL and get the results
@@ -120,7 +120,6 @@ public class PersonDAO {
             log.log(Level.SEVERE, "Error", e );
         } finally {
             // Ok, close our result set, statement, and connection
-
             try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
             try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
         }
