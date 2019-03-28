@@ -126,5 +126,48 @@ public class PersonDAO {
 
     }
 
+    public static void deletePerson(Person person) {
+        log.log(Level.FINE, "Delete Person");
+
+        // Declare our variables
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        // Databases are unreliable. Use some exception handling
+        try {
+            // Get our database connection
+            conn = DBHelper.getConnection();
+
+            // This is a string that is our SQL query.
+            String sql = "DELETE FROM person WHERE id = ?";
+
+            System.out.println("THis is in the delete personDAO function " + person.getId());
+
+            stmt = conn.prepareStatement(sql);
+            // If you had parameters, it would look something like
+            // String sql = "select id, first, last, phone from person where id = ?";
+
+            stmt.setInt(1, person.getId());
+
+            System.out.println("THis is in the delete personDAO function2 " + person.getId());
+
+            // Create an object with all the info about our SQL statement to run.
+
+            // Execute the SQL and get the results
+            stmt.executeUpdate();
+
+            System.out.println("THis is in the delete personDAO function3 " + person.getId());
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se );
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e );
+        } finally {
+            // Ok, close our result set, statement, and connection
+            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+        }
+
+    }
 
 }

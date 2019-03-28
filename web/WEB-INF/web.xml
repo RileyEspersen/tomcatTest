@@ -24,4 +24,15 @@
         <url-pattern>/api/name_list_get</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>NameListDelete</servlet-name>
+        <servlet-class>edu.simpson.espersen.NameListDelete</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NameListDelete</servlet-name>
+        <url-pattern>/api/name_list_delete</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

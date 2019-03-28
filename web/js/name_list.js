@@ -1,11 +1,19 @@
 // Main Javascript File
 //add item button
+
+
+
 var addItemButton = $('#addItem');
 addItemButton.on("click", showDialogAdd);
 
 //savechanges Button
 var saveChangesBut = $('#saveChanges');
 saveChangesBut.on("click", saveChanges);
+
+function deleteItem(e) {
+    console.log("Delete");
+    console.log(e.target.value);
+}
 
 function validateFunction(event) {
     // Get the field
@@ -14,7 +22,6 @@ function validateFunction(event) {
     var phoneNumField = $('#phone').val();
     var emailField = $('#email').val();
     var birthdayField = $('#birthday').val();
-
 
     // Create the regular expression
     var firstTest = /^[a-zA-Z '-]+$/;
@@ -101,6 +108,35 @@ function validateFunction(event) {
     }
 }
 
+function deleteFunction(event) {
+
+    var id = event.target.value;
+
+    console.log("This is a check for my ID " + id);
+
+    var r = $("#datatable tr");
+
+    deleteId = {"id" : parseInt(id)}
+
+    var url = "api/name_list_delete";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: JSON.stringify(deleteId),
+        success: function (dataFromServer) {
+
+            for(var i = 1; i < r.length; i++){
+                r[i].remove();
+            }
+
+            updateTable();
+            console.log(dataFromServer);
+        },
+        contentType: "application/json",
+        dataType: 'text' // Could be JSON or whatever too
+    });
+}
+
 function saveChanges(){
     validateFunction();
 }
@@ -153,10 +189,13 @@ function updateTable() {
 
                     console.log(json_result[i].first);
                     $('#datatable tr:last').after('<tr><td>' + json_result[i].id + '</td><td>' + json_result[i].first + '</td><td>' + json_result[i].last +
-                        '</td><td>' + json_result[i].email + '</td><td>' + phoneNum + '</td><td>' + json_result[i].birthday + '</td></tr>');
+                        '</td><td>' + json_result[i].email + '</td><td>' + phoneNum + '</td><td>' + json_result[i].birthday +
+                        '</td><td><button type=\'button\' name=\'deleteButton\' class=\'deleteButton btn\' value=\'' + json_result[i].id + '\'>Delete</button></td></tr>');
+
                 }
 
             console.log("Done");
+            $(".deleteButton").on("click", deleteFunction);
         }
     );
 }
