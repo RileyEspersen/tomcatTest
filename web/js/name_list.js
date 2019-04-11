@@ -10,13 +10,32 @@ addItemButton.on("click", showDialogAdd);
 var saveChangesBut = $('#saveChanges');
 saveChangesBut.on("click", saveChanges);
 
-function deleteItem(e) {
-    console.log("Delete");
-    console.log(e.target.value);
+function editItem(e) {
+
+    var id = e.target.value;
+    var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
+    var lastName = e.target.parentNode.parentNode.querySelectorAll("td")[2].innerHTML;
+    var email = e.target.parentNode.parentNode.querySelectorAll("td")[3].innerHTML;
+    var phone = e.target.parentNode.parentNode.querySelectorAll("td")[4].innerHTML;
+    var birthday = e.target.parentNode.parentNode.querySelectorAll("td")[5].innerHTML;
+
+    $('#id').val(id); // Yes, now we set and use the hidden ID field
+    $('#firstName').val(firstName);
+    $('#lastName').val(lastName);
+    $('#email').val(email);
+    $('#phone').val(phone);
+    $('#birthday').val(birthday);
+
+// Etc
+    $('#myModal').modal('show');
+
+    console.log("Edit");
+    console.log("ID " + e.target.value);
 }
 
 function validateFunction(event) {
     // Get the field
+    var idField = $('#id').val();
     var firstNameField = $('#firstName').val();
     var lastNameField = $('#lastName').val();
     var phoneNumField = $('#phone').val();
@@ -84,7 +103,7 @@ function validateFunction(event) {
 
         var r = $("#datatable tr");
 
-        newPerson = {"first" : firstNameField, "last" : lastNameField, "email" : emailField, "phone" : phoneNumField, "birthday" : birthdayField}
+        newPerson = {"id" : idField, "first" : firstNameField, "last" : lastNameField, "email" : emailField, "phone" : phoneNumField, "birthday" : birthdayField}
         console.log(newPerson);
 
         var url = "api/name_list_edit";
@@ -190,12 +209,14 @@ function updateTable() {
                     console.log(json_result[i].first);
                     $('#datatable tr:last').after('<tr><td>' + json_result[i].id + '</td><td>' + json_result[i].first + '</td><td>' + json_result[i].last +
                         '</td><td>' + json_result[i].email + '</td><td>' + phoneNum + '</td><td>' + json_result[i].birthday +
-                        '</td><td><button type=\'button\' name=\'deleteButton\' class=\'deleteButton btn\' value=\'' + json_result[i].id + '\'>Delete</button></td></tr>');
+                        '</td><td><button type=\'button\' name=\'deleteButton\' class=\'deleteButton btn\' value=\'' + json_result[i].id + '\'>Delete</button></td>' +
+                        '<td><button type=\'button\' name=\'edit\' class=\'editButton btn\' value=\'' + json_result[i].id + '\'>Edit</button></td></tr>');
 
                 }
 
             console.log("Done");
             $(".deleteButton").on("click", deleteFunction);
+            $(".editButton").on("click", editItem);
         }
     );
 }

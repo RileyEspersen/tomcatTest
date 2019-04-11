@@ -102,7 +102,11 @@ public class NameListEdit extends HttpServlet {
         }
 
         if(statusCheck == true) {
-            PersonDAO.addPerson(fromJson);
+            if( fromJson.getId() == 0){
+                PersonDAO.addPerson(fromJson);}
+            else{
+                PersonDAO.editPerson((fromJson));
+            }
         }
         else{
             System.out.println("something failed backend validation");
